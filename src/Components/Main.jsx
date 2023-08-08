@@ -1,4 +1,4 @@
-import "./App.css";
+// import "./App.css";
 import { useState, useEffect } from "react";
 import PokemonList from "./PokemonList";
 import Pagination from "./Pagination";
@@ -16,6 +16,12 @@ function App() {
   const [nextPageUrl, setNextPageUrl] = useState();
   const [prevPageUrl, setPrevPageUrl] = useState();
   const [loading, setLoading] = useState(true);
+
+  const getInfo =(pokemonName) =>{
+    Axios.get(`https://pokeapi.co/api/v2/pokemon/${pokemonName}`).then((response) =>{
+
+    })
+  }
 
   const pokeFun = async () => {
     setLoading(true);
