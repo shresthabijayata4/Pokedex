@@ -14,18 +14,20 @@ const Card = ({ pokemon, loading, infoPokemon }) => {
             pokemon.map((item) => {
               return (
                 <>
-                  <div
-                    className=" card col-md-3 "
-                    key={item.id}
-                    onClick={() => infoPokemon(item)}
-                  >
-                    {/* <h2>{item.id}</h2> */}
-                    <img
-                      src={item.sprites.front_default}
-                      alt=""
-                      className="h-auto w-[150px] content-center"
-                    />
-                    <h2 className="text-center font-bold	">{item.name}</h2>
+                  <div className="col-md-3">
+                    <div
+                      className=" card w-[auto] m-4"
+                      key={item.id}
+                      onClick={() => infoPokemon(item)}
+                    >
+                      {/* <h2>{item.id}</h2> */}
+                      <img
+                        src={item.sprites.front_default}
+                        alt=""
+                        className="h-auto w-[150px] content-center"
+                      />
+                      <h3 className="text-center font-bold	">{item.name}</h3>
+                    </div>
                   </div>
                 </>
               );
