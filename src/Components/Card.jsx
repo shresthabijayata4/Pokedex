@@ -2,6 +2,8 @@ import React from "react";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import { useState } from "react";
+import { BsStar } from "react-icons/bs";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 const Card = ({ pokemon, loading, infoPokemon }) => {
   // console.log(pokemon);
   return (
@@ -20,12 +22,18 @@ const Card = ({ pokemon, loading, infoPokemon }) => {
                       key={item.id}
                       onClick={() => infoPokemon(item)}
                     >
-                      {/* <h2>{item.id}</h2> */}
+                      <div className="d-flex justify-end pr-3 pt-2 text-xl">
+                        <BsStar />
+                      </div>
+
+                      {/* <AiOutlineStar /> */}
+
                       <img
                         src={item.sprites.front_default}
                         alt=""
                         className="h-auto w-[150px] content-center"
                       />
+
                       <h3 className="text-center font-bold	">{item.name}</h3>
                     </div>
                   </div>

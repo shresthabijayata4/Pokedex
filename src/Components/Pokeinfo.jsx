@@ -58,7 +58,7 @@ const Pokeinfo = ({ data, openModal, toggleModal }) => {
       </Modal.Body>
       <Modal.Footer>
         <Button variant="primary" onClick={toggleModal}>
-          ADD
+          ADD TO GROUP
         </Button>
       </Modal.Footer>
     </Modal>

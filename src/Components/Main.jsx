@@ -6,7 +6,8 @@ import { useState } from "react";
 import { useEffect } from "react";
 import { useEffectOnce } from "../Utils/useEffectOnce";
 import { Button } from "react-bootstrap";
-// import { logo_poke } from "../Images/logo_poke.svg";
+import { useSelector } from "react-redux";
+// import { logo_poke } from "./Images/Pokedex_logo";
 const Main = () => {
   const [pokeData, setPokeData] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -14,7 +15,7 @@ const Main = () => {
   const [nextUrl, setNextUrl] = useState();
   const [prevUrl, setPrevUrl] = useState();
   // const [getpok, getPokemon] = useState();
-
+  const amount = useSelector((state) => state.amount);
   const [pokeDex, setPokeDex] = useState();
   const [show, setShow] = useState(false);
 
@@ -22,7 +23,7 @@ const Main = () => {
   const handleShow = () => {
     setShow(!show);
   };
-  useEffectOnce(() => {
+  useEffect(() => {
     console.log("url", url);
     if (url) {
       pokeFun(url);
@@ -66,31 +67,37 @@ const Main = () => {
             </div>
           </div>
           <div className="row">
-            <div className="btn-group">
-              {prevUrl && (
-                // <button type="button" class="btn btn-primary">Primary</button>
-                <Button
-                  className="btn btn-success m-10"
-                  onClick={() => {
-                    setPokeData([]);
-                    setUrl(prevUrl);
-                  }}
-                >
-                  Previous
-                </Button>
-              )}
+            <Button className="btn btn-warning">My List</Button>
+          </div>
+          <div className="row">
+            <h1>tour balance: {amount}</h1>
+            <div className="col-md-6">
+              <div className="btn-group">
+                {prevUrl && (
+                  // <button type="button" class="btn btn-primary">Primary</button>
+                  <Button
+                    className="btn btn-success m-1"
+                    onClick={() => {
+                      setPokeData([]);
+                      setUrl(prevUrl);
+                    }}
+                  >
+                    Previous
+                  </Button>
+                )}
 
-              {nextUrl && (
-                <Button
-                  class="btn btn-success"
-                  onClick={() => {
-                    setPokeData([]);
-                    setUrl(nextUrl);
-                  }}
-                >
-                  Next
-                </Button>
-              )}
+                {nextUrl && (
+                  <Button
+                    className="btn btn-success m-1"
+                    onClick={() => {
+                      setPokeData([]);
+                      setUrl(nextUrl);
+                    }}
+                  >
+                    Next
+                  </Button>
+                )}
+              </div>
             </div>
           </div>
           <div className="row">
