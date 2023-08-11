@@ -3,6 +3,8 @@ import { Button, Modal } from "react-bootstrap";
 // import Modal from "react-bootstrap/Modal";
 
 const Pokeinfo = ({ data, openModal, toggleModal }) => {
+  console.log(openModal, toggleModal);
+
   return (
     <Modal show={openModal} onHide={toggleModal}>
       <Modal.Header closeButton>

@@ -4,7 +4,8 @@ import Modal from "react-bootstrap/Modal";
 import { useState } from "react";
 import { BsStar } from "react-icons/bs";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-const Card = ({ pokemon, loading, infoPokemon }) => {
+
+const Card = ({ pokemon, loading, infoPokemon, pokemonList }) => {
   // console.log(pokemon);
   return (
     <>
@@ -23,7 +24,11 @@ const Card = ({ pokemon, loading, infoPokemon }) => {
                       onClick={() => infoPokemon(item)}
                     >
                       <div className="d-flex justify-end pr-3 pt-2 text-xl">
-                        <BsStar />
+                        <BsStar
+                          onClick={() =>
+                            pokemonList.dispatch(pokemonList.addPoke())
+                          }
+                        />
                       </div>
 
                       {/* <AiOutlineStar /> */}

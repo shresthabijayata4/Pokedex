@@ -6,22 +6,39 @@ import { useState } from "react";
 import { useEffect } from "react";
 import { useEffectOnce } from "../Utils/useEffectOnce";
 import { Button } from "react-bootstrap";
-import { useSelector } from "react-redux";
-// import { logo_poke } from "./Images/Pokedex_logo";
+import { useDispatch, useSelector } from "react-redux";
+import logo_poke from "../images/pokedex.png";
+import MyList from "./MyList";
+import { addPoke, removePoke } from "./pokeSlice";
 const Main = () => {
+  const poke = useSelector((state) => state.pokemon);
+  console.log("poke", poke);
+  const dispatch = useDispatch();
+  const pokemonList = {
+    poke: poke,
+    dispatch: dispatch,
+    addPoke: addPoke,
+    removePoke: removePoke,
+  };
   const [pokeData, setPokeData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [url, setUrl] = useState("https://pokeapi.co/api/v2/pokemon/");
   const [nextUrl, setNextUrl] = useState();
   const [prevUrl, setPrevUrl] = useState();
   // const [getpok, getPokemon] = useState();
-  const amount = useSelector((state) => state.amount);
+
   const [pokeDex, setPokeDex] = useState();
   const [show, setShow] = useState(false);
+  // const [showList, setListShow] = useState(false);
+
+  const [listShow, setListShow] = useState(false);
 
   // const handleClose = () => setShow(false);
   const handleShow = () => {
     setShow(!show);
+  };
+  const handleListShow = () => {
+    setListShow(!listShow);
   };
   useEffect(() => {
     console.log("url", url);
@@ -51,9 +68,17 @@ const Main = () => {
     });
   };
 
+  // const showList = () => {
+  //   handleListShow();
+  // };
   const showPokenInfo = (pokeInfo) => {
     setPokeDex(pokeInfo);
     handleShow();
+  };
+  const showPokenListInfo = () => {
+    // setPokeDex(pokeInfo);
+    // handleShow()
+    handleListShow();
   };
 
   return (
@@ -61,16 +86,21 @@ const Main = () => {
       <div className="bg-indigo-500">
         <div className="container">
           <div className="row p-10">
-            <div className="col text-center">
-              {/* <img src={logo_poke} /> */}
-              <h2>POKEDEX</h2>
+            <div className="col d-flex justify-center">
+              <img src={logo_poke} />
             </div>
           </div>
           <div className="row">
-            <Button className="btn btn-warning">My List</Button>
+            <Button
+              className="btn btn-warning"
+              onClick={() => {
+                showPokenListInfo();
+              }}
+            >
+              My List
+            </Button>
           </div>
           <div className="row">
-            <h1>tour balance: {amount}</h1>
             <div className="col-md-6">
               <div className="btn-group">
                 {prevUrl && (
@@ -107,6 +137,7 @@ const Main = () => {
                   pokemon={pokeData}
                   loading={loading}
                   infoPokemon={(poke) => showPokenInfo(poke)}
+                  pokemonList={pokemonList}
                 />
               </div>
             </div>
@@ -116,6 +147,7 @@ const Main = () => {
       {show && (
         <Pokeinfo data={pokeDex} openModal={show} toggleModal={handleShow} />
       )}
+      {listShow && <MyList openModal={listShow} toggleModal={handleListShow} />}
     </>
   );
 };
