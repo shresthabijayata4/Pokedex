@@ -138,6 +138,7 @@ const Main = () => {
                   loading={loading}
                   infoPokemon={(poke) => showPokenInfo(poke)}
                   pokemonList={pokemonList}
+                  
                 />
               </div>
             </div>
@@ -147,7 +148,9 @@ const Main = () => {
       {show && (
         <Pokeinfo data={pokeDex} openModal={show} toggleModal={handleShow} />
       )}
-      {listShow && <MyList openModal={listShow} toggleModal={handleListShow} />}
+      {listShow && (
+        <MyList openModal={listShow} toggleModal={handleListShow} poke={poke} />
+      )}
     </>
   );
 };

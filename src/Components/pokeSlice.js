@@ -6,6 +6,7 @@ const pokeSlice = createSlice({
   initialState,
   reducers: {
     addPoke: (state, action) => {
+      console.log("slice here");
       state.push(action.payload); // Add a new book to the state
     },
     removePoke: (state, action) => {
